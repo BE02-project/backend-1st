@@ -23,7 +23,6 @@ public class PostController {
         return postService.getAllPost();
     }
 
-
     @GetMapping("/posts/{id}")
     public PostResponseDto getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
