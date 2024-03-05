@@ -23,14 +23,14 @@ public class PostController {
         return postService.getAllPost();
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping("/posts/search")
     public PostResponseDto getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
     }
 
-    @PostMapping
-    public Post createPost(@RequestBody PostRegisterDto post) {
-        return postService.createPost(post);
+    @PostMapping("/posts/{email}/write")
+    public Post createPost(@RequestBody PostRegisterDto post, @PathVariable String email) {
+        return postService.createPost(post, email);
     }
 
     @PutMapping("/posts/{id}")
