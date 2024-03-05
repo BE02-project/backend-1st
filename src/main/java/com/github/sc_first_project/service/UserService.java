@@ -5,6 +5,7 @@ import com.github.sc_first_project.controller.ErrorCode;
 import com.github.sc_first_project.web.dto.User;
 import com.github.sc_first_project.web.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder encoder;
 
     public void signup(String userEmail, String password) {
         //중복 체크 ( email )
@@ -22,7 +24,7 @@ public class UserService {
         //저장
         User user = User.builder()
                 .email(userEmail)
-                .password(password)
+                .password(encoder.encode(password))
                 .build();
         userRepository.save(user);
     }
