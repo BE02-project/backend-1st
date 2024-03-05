@@ -1,4 +1,4 @@
-package com.github.sc_first_project.controller;
+package com.github.sc_first_project.controller.userController;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,10 +1,10 @@
-package com.github.sc_first_project.service;
+package com.github.sc_first_project.service.user;
 
 import com.github.sc_first_project.exception.AppException;
 import com.github.sc_first_project.exception.ErrorCode;
 import com.github.sc_first_project.utils.JwtTokenUtil;
-import com.github.sc_first_project.web.dto.User;
-import com.github.sc_first_project.web.repository.UserRepository;
+import com.github.sc_first_project.web.userDto.User;
+import com.github.sc_first_project.web.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

@@ -1,4 +1,4 @@
-package com.github.sc_first_project.config;
+package com.github.sc_first_project.config.userConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

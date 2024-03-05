@@ -1,4 +1,4 @@
-package com.github.sc_first_project.web.dto;
+package com.github.sc_first_project.web.userDto;
 
 
 import lombok.AllArgsConstructor;
