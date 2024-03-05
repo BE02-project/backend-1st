@@ -2,6 +2,7 @@ package com.github.sc_first_project.config;
 
 import com.github.sc_first_project.service.UserService;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,12 +18,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-
     private final UserService userService;
-
     @Value("${jwt.token.secret}")
     private String secretKey;
-
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -32,7 +30,7 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/api/signup", "/api/login", "/api/logout", "/api/posts").permitAll() //경로 허용
-                        .requestMatchers(HttpMethod.POST, "/api/v1/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/**").authenticated() //인증 필요
                         .anyRequest().authenticated())
 //				.formLogin(formLogin -> formLogin
 //						.loginPage("/login")
@@ -42,12 +40,11 @@ public class SecurityConfig {
                         .invalidateHttpSession(true))
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)//jwt 사용하는 경우
-//                        .and()
-//                        .addFilterBefore(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class)
+                        .and()
+                        .addFilterAfter(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class)
 
                 );
-        return http.build()
-                ;
+        return http.build();
     }
 
 
