@@ -11,8 +11,9 @@ import lombok.*;
 public class PostRegisterDto {
     private String title;
     private String content;
+    private String email;
 
     public Post toEntity() {
-        return new Post(title, content);
+        return new Post(title, content, email);
     }
 }

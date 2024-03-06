@@ -5,13 +5,17 @@ import com.github.sc_first_project.web.dto.postDto.PostResponseDto;
 import com.github.sc_first_project.web.repository.postRepository.Post;
 import com.github.sc_first_project.web.repository.postRepository.PostRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 public class PostService {
 
     private final PostRepository postRepository;
+    @Value("${jwt.token.secret}")
+    private String secretKey;
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
@@ -29,8 +33,8 @@ public class PostService {
     }
 
     @Transactional
-    public Post createPost(PostRegisterDto post) {
-        return postRepository.save(post.toEntity());
+    public Post createPost(PostRegisterDto postRegisterDto) {
+        return postRepository.save(postRegisterDto.toEntity());
     }
 
     @Transactional

@@ -29,7 +29,7 @@ public class PostController {
         return postService.getPostById(id);
     }
 
-    @PostMapping
+    @PostMapping("/posts/create")
     public Post createPost(@RequestBody PostRegisterDto post) {
         return postService.createPost(post);
     }
