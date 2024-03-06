@@ -1,7 +1,7 @@
-package com.github.sc_first_project.web.repository;
+package com.github.sc_first_project.web.repository.user;
 
 
-import com.github.sc_first_project.web.dto.User;
+import com.github.sc_first_project.web.userDto.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
