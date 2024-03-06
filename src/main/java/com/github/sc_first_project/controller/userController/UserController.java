@@ -61,7 +61,7 @@ public class UserController {
                 response,
                 SecurityContextHolder.getContext().getAuthentication()
         );
-        ApiResponse logoutResponse = new ApiResponse("로그아웃되었습니다.");
+        ApiResponse logoutResponse = new ApiResponse("로그아웃되었습니다.!");
         return ResponseEntity.ok().body(logoutResponse);
     }
 }
