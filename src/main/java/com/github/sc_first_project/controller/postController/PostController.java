@@ -2,7 +2,6 @@ package com.github.sc_first_project.controller.postController;
 
 import com.github.sc_first_project.service.postService.PostService;
 import com.github.sc_first_project.web.dto.postDto.PostRegisterDto;
-import com.github.sc_first_project.web.dto.postDto.PostResponseDto;
 import com.github.sc_first_project.web.repository.postRepository.Post;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +23,8 @@ public class PostController {
     }
 
     @GetMapping("/posts/search")
-    public PostResponseDto getPostById(@PathVariable Long id) {
-        return postService.getPostById(id);
+    public List<Post> getPostByEmail(@RequestParam("author_email") String email, @RequestHeader("Authorization") String token) {
+        return postService.getPostByEmail(email, token);
     }
 
     @PostMapping("/posts/{email}/write")

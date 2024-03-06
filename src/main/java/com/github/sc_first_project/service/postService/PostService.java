@@ -1,20 +1,18 @@
 package com.github.sc_first_project.service.postService;
 
-import com.github.sc_first_project.exception.AppException;
-import com.github.sc_first_project.exception.ErrorCode;
+import com.github.sc_first_project.utils.JwtTokenUtil;
 import com.github.sc_first_project.web.dto.postDto.PostRegisterDto;
 import com.github.sc_first_project.web.dto.postDto.PostResponseDto;
 import com.github.sc_first_project.web.repository.postRepository.Post;
 import com.github.sc_first_project.web.repository.postRepository.PostRepository;
 import com.github.sc_first_project.web.repository.user.UserRepository;
-import com.github.sc_first_project.web.userDto.User;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +20,8 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    @Value("${jwt.token.secret}")
+    private String secretKey;
 
     @Transactional
     public List<Post> getAllPost() {
@@ -34,14 +34,12 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
-//    @Transactional
-//    public List<Post> getPostByEmail(String email) {
-////        List<Post> posts = postRepository.findPostByEmail(email).
-//        List<Post> posts = postRepository.findPostByEmail(email);
-//        posts.stream().
-//
-////        return new PostResponseDto(posts);
-//    }
+    @Transactional
+    public List<Post> getPostByEmail(String email, String token) {
+        String emailToken = token.substring(7);
+        String userEmail = JwtTokenUtil.getUserEmail(emailToken, secretKey);
+        return postRepository.findPostByEmail(userEmail);
+    }
 
     @Transactional
     public Post createPost(PostRegisterDto post, String email) {
