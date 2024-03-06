@@ -1,6 +1,6 @@
-package com.github.sc_first_project.controller;
+package com.github.sc_first_project.controller.likeController;
 
-import com.github.sc_first_project.service.LikeService;
+import com.github.sc_first_project.service.like.LikeService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
