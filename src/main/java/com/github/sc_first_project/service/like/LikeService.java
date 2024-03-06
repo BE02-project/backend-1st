@@ -1,33 +1,45 @@
 package com.github.sc_first_project.service.like;
 
-import com.github.sc_first_project.web.repository.likes.LikesEntity;
+import com.github.sc_first_project.exception.AppException;
+import com.github.sc_first_project.exception.ErrorCode;
+import com.github.sc_first_project.web.repository.likes.Likes;
 import com.github.sc_first_project.web.repository.likes.LikesRepository;
+import com.github.sc_first_project.web.repository.postRepository.Post;
+import com.github.sc_first_project.web.repository.postRepository.PostRepository;
+import com.github.sc_first_project.web.repository.user.UserRepository;
 import com.github.sc_first_project.web.userDto.User;
-import jakarta.persistence.NoResultException;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class LikeService {
     private final LikesRepository likesRepository;
+    private final UserRepository userRepository;
+    private final PostRepository postRepository;
 
-    public void postLike(String like, Integer postId, HttpServletRequest request) {
-        User userEntity = getUserFromToken(request); // 토큰으로부터 user정보 가져오기
-        PostEntity postEntity = postRepository.findById(postId).orElseThrow(
-                () -> new NoResultException("해당 포스트를 찾을 수 없습니다.")
-        );  // 포스트아이디 찾기
-        LikesEntity likesEntity = new LikesEntity(userEntity, postEntity);
 
-        if (Objects.equals(like, "true")) {
-            likesRepository.save(likesEntity);
+    public String postLike(long postId, String email) {
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new AppException("포스트를 찾을 수 없습니다.", ErrorCode.POST_NOT_FOUND)
+        );
+
+        User user = userRepository.findByEmail(email).orElseThrow(
+                () -> new AppException("사용자를 찾을 수 없습니다", ErrorCode.USE_EMAIL_NOT_FOUND)
+        );
+
+        Optional<Likes> likes = likesRepository.findByUserAndPost(user, post);
+
+        if(likes.isPresent()){
+            likesRepository.delete(likes.get());
+            return "좋아요를 취소했습니다.";
         } else {
-            likesRepository.delete(likesEntity);
+            likesRepository.save(Likes.toEntity(user, post));
+            return "좋아요를 눌렀습니다.";
         }
     }
 }
