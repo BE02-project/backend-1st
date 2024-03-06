@@ -1,4 +1,4 @@
-package com.github.sc_first_project.web.userDto;
+package com.github.sc_first_project.entity;
 
 
 import jakarta.persistence.*;
