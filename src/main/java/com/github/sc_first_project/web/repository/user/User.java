@@ -1,4 +1,4 @@
-package com.github.sc_first_project.entity;
+package com.github.sc_first_project.web.repository.user;
 
 
 import jakarta.persistence.*;

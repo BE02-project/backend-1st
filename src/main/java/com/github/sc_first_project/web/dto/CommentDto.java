@@ -1,7 +1,7 @@
 package com.github.sc_first_project.web.dto;
 
 
-import com.github.sc_first_project.entity.Comment;
+import com.github.sc_first_project.web.repository.comment.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

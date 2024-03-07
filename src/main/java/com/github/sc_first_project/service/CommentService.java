@@ -1,6 +1,6 @@
 package com.github.sc_first_project.service;
 
-import com.github.sc_first_project.entity.Comment;
+import com.github.sc_first_project.web.repository.comment.Comment;
 import com.github.sc_first_project.web.dto.CommentDto;
 import com.github.sc_first_project.web.repository.comment.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;

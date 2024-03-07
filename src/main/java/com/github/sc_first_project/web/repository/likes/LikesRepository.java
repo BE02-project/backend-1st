@@ -1,7 +1,7 @@
 package com.github.sc_first_project.web.repository.likes;
 
 import com.github.sc_first_project.web.repository.postRepository.Post;
-import com.github.sc_first_project.web.userDto.User;
+import com.github.sc_first_project.web.repository.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
