@@ -9,6 +9,7 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @ToString
+//@Table(name = "post")
 public class Post {
 
     @Id
