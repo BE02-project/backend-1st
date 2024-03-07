@@ -9,11 +9,15 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class PostResponseDto {
+    private Long id;
     private String title;
     private String content;
+    private String email;
 
     public PostResponseDto(Post post) {
+        this.id = post.getId();
         this.title = post.getTitle();
         this.content = post.getContent();
+        this.email = post.getEmail();
     }
 }
