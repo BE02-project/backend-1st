@@ -1,4 +1,4 @@
-package com.github.sc_first_project.controller;
+package com.github.sc_first_project.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
