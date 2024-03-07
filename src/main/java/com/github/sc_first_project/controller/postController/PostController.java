@@ -6,6 +6,7 @@ import com.github.sc_first_project.web.dto.postDto.PostResponseDto;
 import com.github.sc_first_project.web.repository.postRepository.Post;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,13 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public PostResponseDto getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
+    }
+
+    @GetMapping("/posts/search")
+    public ResponseEntity<List<PostResponseDto>> getPostByEmail(@RequestParam("email") String email) {
+        List<PostResponseDto> responseDtoList = postService.getPostByEmail(email);
+
+        return ResponseEntity.ok().body(responseDtoList);
     }
 
     @PostMapping("/posts/create")
