@@ -1,7 +1,7 @@
-package com.github.sc_first_project.web.repository.likes;
+package com.github.sc_first_project.web.repository.likesRepository;
 
 import com.github.sc_first_project.web.repository.postRepository.Post;
-import com.github.sc_first_project.web.repository.user.User;
+import com.github.sc_first_project.web.repository.userRepository.User;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -3,9 +3,9 @@ package com.github.sc_first_project.controller.userController;
 
 import com.github.sc_first_project.apiResponse.ApiResponse;
 import com.github.sc_first_project.apiResponse.ApiResponseWithToken;
-import com.github.sc_first_project.service.user.UserService;
-import com.github.sc_first_project.web.userDto.UerJoinRequest;
-import com.github.sc_first_project.web.userDto.UserLoginRequest;
+import com.github.sc_first_project.service.userService.UserService;
+import com.github.sc_first_project.web.dto.userDto.UerJoinRequest;
+import com.github.sc_first_project.web.dto.userDto.UserLoginRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

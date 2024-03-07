@@ -1,4 +1,4 @@
-package com.github.sc_first_project.web.repository.comment;
+package com.github.sc_first_project.web.repository.commentRepository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,7 +1,7 @@
-package com.github.sc_first_project.web.repository.comment;
+package com.github.sc_first_project.web.repository.commentRepository;
 
 
-import com.github.sc_first_project.web.dto.CommentDto;
+import com.github.sc_first_project.web.dto.commentDto.CommentDto;
 import jakarta.persistence.*;
 import lombok.*;
 
