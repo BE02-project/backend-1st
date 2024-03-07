@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -55,9 +54,9 @@ public class PostService {
     }
 
     @Transactional
-    public List<PostResponseDto> getPostByEmail(String email) {
-        List<Post> posts = postEmailRepository.findPostByEmail(email).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 email 입니다."));
-
-        return posts.stream().map(PostResponseDto::new).collect(Collectors.toList());
+    public List<PostResponseDto> findPostByEmail(String email) {
+        List<Post> postEntities = postEmailRepository.findPostByEmail(email);
+        return postEntities.stream().map(PostResponseDto::new).toList();
     }
+
 }

@@ -6,48 +6,44 @@ import com.github.sc_first_project.web.dto.postDto.PostResponseDto;
 import com.github.sc_first_project.web.repository.postRepository.Post;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/posts")
 @RequiredArgsConstructor
 @Slf4j
 public class PostController {
 
     private final PostService postService;
 
-    @GetMapping("/posts")
+    @GetMapping
     public List<Post> findAllPost() {
         return postService.getAllPost();
     }
 
-
-    @GetMapping("/posts/{id}")
+    @GetMapping("/{id}")
     public PostResponseDto getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
     }
 
-    @GetMapping("/posts/search")
-    public ResponseEntity<List<PostResponseDto>> getPostByEmail(@RequestParam("email") String email) {
-        List<PostResponseDto> responseDtoList = postService.getPostByEmail(email);
-
-        return ResponseEntity.ok().body(responseDtoList);
+    @GetMapping("/search")
+    public List<PostResponseDto> getPostByEmail(@RequestParam("email") String email) {
+        return postService.findPostByEmail(email);
     }
 
-    @PostMapping("/posts/create")
+    @PostMapping("/create")
     public Post createPost(@RequestBody PostRegisterDto post) {
         return postService.createPost(post);
     }
 
-    @PutMapping("/posts/{id}")
+    @PutMapping("/{id}")
     public Post updatePost(@PathVariable Long id, @RequestBody PostRegisterDto updatedPost) {
         return postService.updatePost(id, updatedPost);
     }
 
-    @DeleteMapping("/posts/{id}")
+    @DeleteMapping("/{id}")
     public void deletePost(@PathVariable Long id) {
         postService.deletePost(id);
     }
