@@ -3,6 +3,7 @@ package com.github.sc_first_project.service.postService;
 import com.github.sc_first_project.web.dto.postDto.PostRegisterDto;
 import com.github.sc_first_project.web.dto.postDto.PostResponseDto;
 import com.github.sc_first_project.web.repository.postRepository.Post;
+import com.github.sc_first_project.web.repository.postRepository.PostEmailRepository;
 import com.github.sc_first_project.web.repository.postRepository.PostRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,11 +15,13 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final PostEmailRepository postEmailRepository;
     @Value("${jwt.token.secret}")
     private String secretKey;
 
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, PostEmailRepository postEmailRepository) {
         this.postRepository = postRepository;
+        this.postEmailRepository = postEmailRepository;
     }
 
     @Transactional
@@ -49,4 +52,11 @@ public class PostService {
     public void deletePost(Long id) {
         postRepository.deleteById(id);
     }
+
+    @Transactional
+    public List<PostResponseDto> findPostByEmail(String email) {
+        List<Post> postEntities = postEmailRepository.findPostByEmail(email);
+        return postEntities.stream().map(PostResponseDto::new).toList();
+    }
+
 }

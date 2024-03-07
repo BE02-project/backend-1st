@@ -11,35 +11,39 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/posts")
 @RequiredArgsConstructor
 @Slf4j
 public class PostController {
 
     private final PostService postService;
 
-    @GetMapping("/posts")
+    @GetMapping
     public List<Post> findAllPost() {
         return postService.getAllPost();
     }
 
-
-    @GetMapping("/posts/{id}")
+    @GetMapping("/{id}")
     public PostResponseDto getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
     }
 
-    @PostMapping("/posts/create")
+    @GetMapping("/search")
+    public List<PostResponseDto> getPostByEmail(@RequestParam("email") String email) {
+        return postService.findPostByEmail(email);
+    }
+
+    @PostMapping("/create")
     public Post createPost(@RequestBody PostRegisterDto post) {
         return postService.createPost(post);
     }
 
-    @PutMapping("/posts/{id}")
+    @PutMapping("/{id}")
     public Post updatePost(@PathVariable Long id, @RequestBody PostRegisterDto updatedPost) {
         return postService.updatePost(id, updatedPost);
     }
 
-    @DeleteMapping("/posts/{id}")
+    @DeleteMapping("/{id}")
     public void deletePost(@PathVariable Long id) {
         postService.deletePost(id);
     }
