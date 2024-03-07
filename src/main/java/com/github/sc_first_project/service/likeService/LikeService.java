@@ -1,13 +1,13 @@
-package com.github.sc_first_project.service.like;
+package com.github.sc_first_project.service.likeService;
 
 import com.github.sc_first_project.exception.AppException;
 import com.github.sc_first_project.exception.ErrorCode;
-import com.github.sc_first_project.web.repository.likes.Likes;
-import com.github.sc_first_project.web.repository.likes.LikesRepository;
+import com.github.sc_first_project.web.repository.likesRepository.Likes;
+import com.github.sc_first_project.web.repository.likesRepository.LikesRepository;
 import com.github.sc_first_project.web.repository.postRepository.Post;
 import com.github.sc_first_project.web.repository.postRepository.PostRepository;
-import com.github.sc_first_project.web.repository.user.User;
-import com.github.sc_first_project.web.repository.user.UserRepository;
+import com.github.sc_first_project.web.repository.userRepository.User;
+import com.github.sc_first_project.web.repository.userRepository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

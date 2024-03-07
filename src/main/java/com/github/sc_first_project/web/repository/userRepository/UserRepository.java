@@ -1,4 +1,4 @@
-package com.github.sc_first_project.web.repository.user;
+package com.github.sc_first_project.web.repository.userRepository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,18 +1,16 @@
-package com.github.sc_first_project.controller;
+package com.github.sc_first_project.controller.commentController;
 
 import com.github.sc_first_project.apiResponse.ApiResponse;
-import com.github.sc_first_project.service.CommentService;
-import com.github.sc_first_project.web.dto.CommentDto;
-import org.hibernate.annotations.Comments;
+import com.github.sc_first_project.service.commentService.CommentService;
+import com.github.sc_first_project.web.dto.commentDto.CommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static net.sf.jsqlparser.parser.feature.Feature.comment;
-
 @RestController
+@RequestMapping("/api")
 public class CommentController {
 
     @Autowired

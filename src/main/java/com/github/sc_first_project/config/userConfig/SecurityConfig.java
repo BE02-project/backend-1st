@@ -1,6 +1,6 @@
 package com.github.sc_first_project.config.userConfig;
 
-import com.github.sc_first_project.service.user.UserService;
+import com.github.sc_first_project.service.userService.UserService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Value;

@@ -1,8 +1,8 @@
-package com.github.sc_first_project.service;
+package com.github.sc_first_project.service.commentService;
 
-import com.github.sc_first_project.web.repository.comment.Comment;
-import com.github.sc_first_project.web.dto.CommentDto;
-import com.github.sc_first_project.web.repository.comment.CommentRepository;
+import com.github.sc_first_project.web.repository.commentRepository.Comment;
+import com.github.sc_first_project.web.dto.commentDto.CommentDto;
+import com.github.sc_first_project.web.repository.commentRepository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
