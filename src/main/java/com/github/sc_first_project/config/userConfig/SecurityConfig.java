@@ -29,12 +29,9 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable) //ui쪽
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/api/signup", "/api/login", "/api/logout", "/api/posts").permitAll() //경로 허용
-                        .requestMatchers(HttpMethod.POST, "/api/**").authenticated() //인증 필요
+                        .requestMatchers("/api/signup", "/api/login", "/api/logout", "/api/emailUser","/api/articles1", "/api/idUser/**").permitAll() //경로 허용
+                        .requestMatchers(HttpMethod.POST, "/api").authenticated() //인증 필요
                         .anyRequest().authenticated())
-//				.formLogin(formLogin -> formLogin
-//						.loginPage("/login")
-//						.defaultSuccessUrl("/home"))
                 .logout((logout) -> logout
                         .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true))

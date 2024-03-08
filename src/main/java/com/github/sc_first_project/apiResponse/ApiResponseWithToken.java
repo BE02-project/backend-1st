@@ -17,5 +17,4 @@ public class ApiResponseWithToken {
         this.token = token;
         this.message = message;
     }
-
 }

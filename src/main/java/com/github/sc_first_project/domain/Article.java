@@ -1,13 +1,13 @@
-package com.github.sc_first_project.web.userDto;
+package com.github.sc_first_project.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
 @Entity //엔티티 지정
 public class Article {
     @Id
@@ -18,12 +18,24 @@ public class Article {
     @Column(name = "title", nullable = false) //title notNull 컬럼 매핑
     private String title;
 
+    @Column(name = "userEmail")
+    private String email;
+
+    @Column(name = "created_At")
+    private LocalDateTime createdAt;
+
     @Column(name = "content")
     private String content;
 
     @Builder //빌더 패턴 객체
-    public Article(String title, String content) {
+    public Article(String title, String email, LocalDateTime createdAt, String content) {
         this.title = title;
+        this.email = email;
+        this.createdAt = createdAt;
+        this.content = content;
+    }
+
+    public void update(String content) {
         this.content = content;
     }
 }

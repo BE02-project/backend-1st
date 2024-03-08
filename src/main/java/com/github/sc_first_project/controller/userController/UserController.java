@@ -4,7 +4,7 @@ package com.github.sc_first_project.controller.userController;
 import com.github.sc_first_project.apiResponse.ApiResponse;
 import com.github.sc_first_project.apiResponse.ApiResponseWithToken;
 import com.github.sc_first_project.service.user.UserService;
-import com.github.sc_first_project.web.userDto.UerJoinRequest;
+import com.github.sc_first_project.web.userDto.UserJoinRequest;
 import com.github.sc_first_project.web.userDto.UserLoginRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,12 +15,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
-@Controller
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
@@ -29,7 +28,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody UerJoinRequest dto) {
+    public ResponseEntity<String> signup(@RequestBody UserJoinRequest dto) {
         userService.signup(dto.getEmail(), dto.getPassword());
         String message = "회원가입이 완료되었습니다.";
         ApiResponse response = new ApiResponse(message);

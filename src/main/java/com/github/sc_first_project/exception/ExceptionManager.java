@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice //에러나면 이걸 찾음
 public class ExceptionManager {
     @ExceptionHandler(AppException.class)
-    public ResponseEntity<?> AppExceptionHandler(AppException e) { //에러나면 return
+    public ResponseEntity<?> AppExceptionHandler(AppException e) {
 
-        return ResponseEntity.status(e.getErrorCode().getHttpStatus()) //찍히는 에러
+        return ResponseEntity.status(e.getErrorCode().getHttpStatus())
                 .body(e.getErrorCode().name() + " " + e.getMessage());
     }
 
